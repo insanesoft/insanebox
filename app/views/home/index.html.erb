@@ -1,0 +1,11 @@
+<h1>Home#index</h1>
+<%= form_tag(controller: "sessions", action: "create") do %>
+    <fieldset>
+      <legend>Login Form</legend>
+      <%= label_tag :email %>
+      <%= text_field_tag :email %>
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+      <%= submit_tag "Login", :class => "likemedia-button" %>
+    </fieldset>
+<% end %>
