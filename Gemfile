@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+# Bundle edge Rails instead: gem 'generators', github: 'generators/generators'
 gem 'rails', '4.0.2'
-
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -19,14 +18,14 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/generators/turbolinks
 gem 'turbolinks'
 
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+# Build JSON APIs with ease. Read more: https://github.com/generators/jbuilder
 gem 'jbuilder', '~> 1.2'
 
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
+  # bundle exec rake doc:generators generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
@@ -40,17 +39,17 @@ end
 # gem 'capistrano', group: :development
 
 # Use debugger
-  gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
 
 # Use Fundation as front-end framework
-  gem 'foundation-rails'
+gem 'foundation-rails'
 
 # Use mongoid as MongoDB ODM
-  gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
+gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
 
 # Use em-imap as imap eventMachine
-  gem 'em-imap'
+gem 'em-imap'
 
 # Build back-offices easily
-  gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'gregbell/active_admin'
 
