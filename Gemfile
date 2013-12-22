@@ -56,3 +56,6 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 # Use dalli to handle memcache session
 gem 'dalli'
 
+# Use omniauth to manage multi-provider authentication
+gem 'omniauth'
+
