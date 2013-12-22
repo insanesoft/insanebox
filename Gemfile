@@ -53,3 +53,6 @@ gem 'em-imap'
 # Build back-offices easily
 gem 'activeadmin', github: 'gregbell/active_admin'
 
+# Use dalli to handle memcache session
+gem 'dalli'
+
