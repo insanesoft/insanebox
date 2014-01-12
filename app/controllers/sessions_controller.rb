@@ -13,4 +13,8 @@ class SessionsController < ApplicationController
       render :template => 'home/index'
     end
   end
+
+  def destroy
+
+  end
 end
