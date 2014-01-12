@@ -15,7 +15,7 @@ development:
         # write:
         # w: 1
 
-        # Change the default consistency model to primary, secondary.
+        # Change the default consistency active_model to primary, secondary.
         # 'secondary' will send reads to secondaries, 'primary' sends everything
         # to master. (default: primary)
         # read: secondary_preferred
@@ -32,7 +32,7 @@ development:
     # Enable the identity map, needed for eager loading. (default: false)
     # identity_map_enabled: false
 
-    # Includes the root model name in json serialization. (default: false)
+    # Includes the root active_model name in json serialization. (default: false)
     # include_root_in_json: false
 
     # Include the _type field in serializaion. (default: false)
