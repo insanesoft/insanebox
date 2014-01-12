@@ -4,6 +4,7 @@ Insanebox::Application.routes.draw do
   get "sessions/create"
   post "sessions/create"
   get "home/index"
+  get "sessions/destroy"
   root :to => "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
