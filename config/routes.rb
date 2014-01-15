@@ -8,8 +8,8 @@ Insanebox::Application.routes.draw do
   root :to => "home#index"
 
   # Omniauth routes
-  match "/auth/:provider/callback" => "sessions#create"
-  match "/signout" => "sessions#destroy", :as => :signout
+  match "/auth/:provider/callback" => "sessions#create", via: :get
+  match "/signout" => "sessions#destroy", :as => :signout, via: :get
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
