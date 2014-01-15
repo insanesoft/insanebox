@@ -1,0 +1,35 @@
+<style type="text/css">
+</style>
+<nav class="top-bar" data-topbar>
+  <section class="top-bar-section">
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li class="has-form">
+        <div class="row collapse">
+          <div class="large-8 small-9 columns">
+            <input type="text" placeholder="Find Stuff">
+          </div>
+          <div class="large-4 small-3 columns">
+            <a href="#" class="alert button expand">Search</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="#">InsaneBox</a></h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+    </ul>
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li class="has-dropdown">
+        <a href="#"><%= current_user.email %></a>
+        <ul class="dropdown">
+          <li><a href="#"><%= link_to "LogOut", {:controller => "sessions", :action => "destroy"} %></a></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+</nav>
