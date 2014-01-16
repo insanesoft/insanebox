@@ -95,6 +95,9 @@ GEM
     execjs (2.0.2)
     faraday (0.8.9)
       multipart-post (~> 1.2.0)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
     foundation-rails (5.0.2.0)
@@ -223,6 +226,7 @@ DEPENDENCIES
   dalli
   debugger
   em-imap
+  figaro
   foundation-rails
   jbuilder (~> 1.2)
   jquery-rails

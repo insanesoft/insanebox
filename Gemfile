@@ -62,4 +62,6 @@ gem 'omniauth'
 # Omniauth google provider
 gem 'omniauth-google-oauth2'
 
+# key configuration using ENV
+gem "figaro"
 
