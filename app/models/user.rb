@@ -36,10 +36,11 @@ class User
     create! do |user|
       user.provider = auth['provider']
       user.uid = auth['uid']
+      debugger
       if auth['info']
         user.name = auth['info']['name'] || ""
         user.email = auth['info']['email'] || ""
-        user.avatar = auth['info']['picture'] || ""
+        user.avatar = auth['info']['image'] || ""
       end
     end
   end
