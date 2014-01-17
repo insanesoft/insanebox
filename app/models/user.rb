@@ -1,13 +1,19 @@
 class User
   include Mongoid::Document
+  field :provider, type:  String
+  field :uid, type:  String
   field :email, type: String
-  field :password, type: String
+  field :name, type: String
+  field :avatar, type: String
 
-  validates_confirmation_of :password
-  validates :password, confirmation: true
+
+  #field :password, type: String
+
+  #validates_confirmation_of :password
+  #validates :password, confirmation: true
   validates :email, presence: true, uniqueness: true
 
-  before_save :encrypt_password
+  #before_save :encrypt_password
 
   def encrypt_method(password)
     Digest::SHA512.hexdigest(password)
@@ -25,4 +31,18 @@ class User
     end
     return auth
   end
+
+  def self.create_with_omniauth(auth)
+    create! do |user|
+      user.provider = auth['provider']
+      user.uid = auth['uid']
+      debugger
+      if auth['info']
+        user.name = auth['info']['name'] || ""
+        user.email = auth['info']['email'] || ""
+        user.avatar = auth['info']['image'] || ""
+      end
+    end
+  end
+
 end

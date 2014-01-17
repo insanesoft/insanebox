@@ -1,6 +1,6 @@
 class InboxController < ApplicationController
   layout "inbox_layout"
-  before_filter :authorize
+  before_filter :authenticate_user!
 
   def show
   end

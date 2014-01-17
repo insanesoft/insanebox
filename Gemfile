@@ -53,6 +53,15 @@ gem 'em-imap'
 # Build back-offices easily
 gem 'activeadmin', github: 'gregbell/active_admin'
 
-# Use dalli to handle memcache session
+# Use dalli to handle memcached session
 gem 'dalli'
+
+# Use omniauth to manage multi-provider authentication
+gem 'omniauth'
+
+# Omniauth google provider
+gem 'omniauth-google-oauth2'
+
+# key configuration using ENV
+gem "figaro"
 
