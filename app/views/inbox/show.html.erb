@@ -18,7 +18,7 @@
         clear: both;
     }
 
-    .masonry .item {
+    .masonry .card {
         border-radius: 3px;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
         background: #ffffff;
@@ -33,49 +33,33 @@
         border-color: hsla(0, 0%, 0%, 0.5);
         text-overflow: ellipsis;
         overflow: hidden;
+        padding: 10px 10px 10px 10px;
+        line-height: 18px;
     }
 
-    .item.w2 { width:  120px; }
-    .item.w3 { width:  180px; }
-    .item.w4 { width:  240px; }
-
-    .item.h2 { height: 100px; }
-    .item.h3 { height: 130px; }
-    .item.h4 { height: 180px; }
-
-    .item.gigante {
+    .card.gigante {
         width: 500px;
-        height: 450px;
+        height: 400px;
     }
 
-    .item:hover {
+    .card:hover {
         background: #b7b7b7;
         border-color: white;
         cursor: pointer;
     }
+    .text{
+        color: #888888;
+    }
+
 </style>
 <div class="insane-grid" style="background-color: #ebebea">
   <div class="large-12 columns" style="margin-top: 20px">
     <div class="masonry">
-      <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque consequatur, corporis dolor eaque earum est expedita harum illo in iusto laudantium magnam maiores neque, nulla omnis perferendis sapiente tenetur.lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aut beatae debitis deserunt dolores earum eveniet ex fugiat fugit, incidunt maxime minus molestias placeat, praesentium, quae sed similique vero voluptates.</div>
-      <div class="item w2 h2"></div>
-      <div class="item h3"></div>
-      <div class="item h2"></div>
-      <div class="item w3"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item h2"></div>
-      <div class="item w2 h3"></div>
-      <div class="item"></div>
-      <div class="item h2"></div>
-      <div class="item"></div>
-      <div class="item w2"></div>
-      <div class="item"></div>
-      <div class="item h2"></div>
-      <div class="item"></div>
-      <div class="item w3"></div>
-      <div class="item"></div>
-      <div class="item h2"></div>
+      <% i = 0 %>
+      <% while i < 15 %>
+      <%= render 'shared/card', object: @i = i %>
+      <% i = i + 1 %>
+      <% end %>
     </div>
   </div>
 
@@ -91,14 +75,23 @@
 
         eventie.bind( container, 'click', function( event ) {
             // don't proceed if item was not clicked on
-            if ( !classie.has( event.target, 'item' ) ) {
-                return;
+            if (event.target === div.row){
+                if ( !classie.has( event.parentNode, 'card' ) ) {
+                    return;
+                }
+                // change size of item via class
+                classie.toggle( event.parentNode, 'gigante' );
+            } else {
+                if ( !classie.has( event.target, 'card' ) ) {
+                    return;
+                }
+                // change size of item via class
+                classie.toggle( event.target, 'gigante' );
             }
-            // change size of item via class
-            classie.toggle( event.target, 'gigante' );
             // trigger layout
             msnry.layout();
+
         });
 
     });
-</script>º
+</script>
