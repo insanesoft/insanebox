@@ -22,7 +22,7 @@
         border-radius: 3px;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
         background: #ffffff;
-        width: 236px;
+        width: 300px;
         /*width:  60px;*/
         height: 120px;
         float: left;
@@ -38,7 +38,7 @@
     }
 
     .card.gigante {
-        width: 500px;
+        width: 660px;
         height: 400px;
     }
 
@@ -75,23 +75,30 @@
 
         eventie.bind( container, 'click', function( event ) {
             // don't proceed if item was not clicked on
-            if (event.target === div.row){
-                if ( !classie.has( event.parentNode, 'card' ) ) {
-                    return;
-                }
-                // change size of item via class
-                classie.toggle( event.parentNode, 'gigante' );
-            } else {
-                if ( !classie.has( event.target, 'card' ) ) {
-                    return;
-                }
-                // change size of item via class
-                classie.toggle( event.target, 'gigante' );
-            }
+            node = searchCard( event );
+            if (node){
+              classie.toggle( node, 'gigante' );
+            } 
             // trigger layout
             msnry.layout();
 
         });
+
+        function searchCard(event){
+          node = event.target;
+          masonry = false;
+          while (!masonry){
+           if (node.className.contains('card')){
+              return node;
+           } else if (node.className.contains('masonry')){
+              masonry = true;
+           }
+           node = node.parentNode;
+         }
+         if (masonry === true){
+          return null;
+         }
+        }
 
     });
 </script>
