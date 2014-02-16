@@ -65,3 +65,5 @@ gem 'omniauth-google-oauth2'
 # key configuration using ENV
 gem "figaro"
 
+# IMAP & SMTP OAuth 2.0 authentication
+gem 'gmail_xoauth'

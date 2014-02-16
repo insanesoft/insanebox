@@ -3,6 +3,7 @@ class InboxController < ApplicationController
   before_filter :authenticate_user!
 
   def show
+    @mails = current_user.fetch_mails
   end
 
 end
