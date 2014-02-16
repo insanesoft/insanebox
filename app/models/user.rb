@@ -54,17 +54,17 @@ class User
     end
   end
 
-  require 'gmail_xoauth'
-
   def fetch_mails
-    connect(self.email)
+    imap = connect(self.email)
     messages_count = imap.status('INBOX', ['MESSAGES'])['MESSAGES']
   end
 
   def connect(gmail_account)
     imap = Net::IMAP.new('imap.gmail.com', 993, usessl=true, certs=nil, verify=false)
-    imap.authenticate('XOAUTH2', gmail_account, self.token)
-  end
+    #imap.authenticate('XOAUTH2', gmail_account, self.token)
+    imap.login(gmail_account, 'catufa87')
 
+    imap
+  end
 
 end
