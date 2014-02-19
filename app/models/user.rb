@@ -30,33 +30,47 @@ class User
 
   def authenticate(password)
     auth = false
+
     password_encrypted = encrypt_method(password)
+
     if self.password == password_encrypted
       auth = true
     end
-    return auth
+
+    auth
   end
 
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth['provider']
       user.uid = auth['uid']
+
       if auth['info']
         user.name = auth['info']['name'] || ""
         user.email = auth['info']['email'] || ""
         user.avatar = auth['info']['image'] || ""
       end
-      debugger
+
       if auth['credentials']
-        debugger
         user.token = auth['credentials']['token'] || ""
       end
     end
   end
 
-  def fetch_mails
+  def fetch_mails_by_date(from, to)
     imap = connect(self.email)
-    messages_count = imap.status('INBOX', ['MESSAGES'])['MESSAGES']
+    #messages_count = imap.status('INBOX', ['MESSAGES'])['MESSAGES']
+
+    imap.examine('INBOX')
+
+    mails = Array.new
+
+    imap.search(["BEFORE", from, "SINCE", to]).each do |message_id|
+      envelope = imap.fetch(message_id, "ENVELOPE")[0].attr["ENVELOPE"]
+      mails << [envelope.sender.first.name, envelope.date, envelope.subject]
+    end
+
+    mails
   end
 
   def connect(gmail_account)
