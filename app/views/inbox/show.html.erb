@@ -54,13 +54,36 @@
 </style>
 <div class="insane-grid" style="background-color: #ebebea">
   <div class="large-12 columns" style="margin-top: 20px">
-    <div class="masonry">
-      <% i = 0 %>
-      <% while i < 15 %>
-      <%= render 'shared/card', object: @i = i %>
-      <% i = i + 1 %>
-      <% end %>
+    <div class="off-canvas-wrap">
+      <div class="inner-wrap">
+        <div class="large-1 columns" style="margin-top:250px; width: 50px">
+          <a class="left-off-canvas-toggle"  >></a> 
+        </div>
+        <!-- Off Canvas Menu -->
+        <aside class="left-off-canvas-menu">
+            <!-- whatever you want goes here -->
+            <ul>
+              <li><a href="#">Item 1</a></li>
+            ...
+            </ul>
+        </aside>
+        <div class="large-11 columns">
+        <!-- main content goes here -->
+          <div class="masonry">
+            <% i = 0 %>
+            <% while i < 15 %>
+            <%= render 'shared/card', object: @i = i %>
+            <% i = i + 1 %>
+            <% end %>
+          </div>
+        </div>
+      <!-- close the off-canvas menu -->
+      <a class="exit-off-canvas"></a>
+
+      </div>
     </div>
+    
+
   </div>
 
 </div>
@@ -88,9 +111,9 @@
           node = event.target;
           masonry = false;
           while (!masonry){
-           if (node.className.contains('card')){
+           if (node.className.search('card') === 0){
               return node;
-           } else if (node.className.contains('masonry')){
+           } else if (node.className.search('masonry') === 0){
               masonry = true;
            }
            node = node.parentNode;
