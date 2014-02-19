@@ -18,11 +18,11 @@
         clear: both;
     }
 
-    .masonry .item {
+    .masonry .card {
         border-radius: 3px;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
         background: #ffffff;
-        width: 236px;
+        width: 300px;
         /*width:  60px;*/
         height: 120px;
         float: left;
@@ -33,49 +33,54 @@
         border-color: hsla(0, 0%, 0%, 0.5);
         text-overflow: ellipsis;
         overflow: hidden;
+        padding: 10px 10px 10px 10px;
+        line-height: 18px;
     }
 
-    .item.w2 { width:  120px; }
-    .item.w3 { width:  180px; }
-    .item.w4 { width:  240px; }
-
-    .item.h2 { height: 100px; }
-    .item.h3 { height: 130px; }
-    .item.h4 { height: 180px; }
-
-    .item.gigante {
-        width: 500px;
-        height: 450px;
+    .card.gigante {
+        width: 660px;
+        height: 400px;
     }
 
-    .item:hover {
+    .card:hover {
         background: #b7b7b7;
         border-color: white;
         cursor: pointer;
     }
+    .text{
+        color: #888888;
+    }
+
 </style>
 <div class="insane-grid" style="background-color: #ebebea">
   <div class="large-12 columns" style="margin-top: 20px">
-    <div class="masonry">
-      <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque consequatur, corporis dolor eaque earum est expedita harum illo in iusto laudantium magnam maiores neque, nulla omnis perferendis sapiente tenetur.lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aut beatae debitis deserunt dolores earum eveniet ex fugiat fugit, incidunt maxime minus molestias placeat, praesentium, quae sed similique vero voluptates.</div>
-      <div class="item w2 h2"><%= @mails %></div>
-      <div class="item h3"></div>
-      <div class="item h2"></div>
-      <div class="item w3"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item h2"></div>
-      <div class="item w2 h3"></div>
-      <div class="item"></div>
-      <div class="item h2"></div>
-      <div class="item"></div>
-      <div class="item w2"></div>
-      <div class="item"></div>
-      <div class="item h2"></div>
-      <div class="item"></div>
-      <div class="item w3"></div>
-      <div class="item"></div>
-      <div class="item h2"></div>
+    <div class="off-canvas-wrap">
+      <div class="inner-wrap">
+        <div class="large-1 columns" style="margin-top:250px; width: 50px">
+          <a class="left-off-canvas-toggle"  >></a> 
+        </div>
+        <!-- Off Canvas Menu -->
+        <aside class="left-off-canvas-menu">
+            <!-- whatever you want goes here -->
+            <ul>
+              <li><a href="#">Item 1</a></li>
+            ...
+            </ul>
+        </aside>
+        <div class="large-11 columns">
+        <!-- main content goes here -->
+          <div class="masonry">
+            <% i = 0 %>
+            <% while i < 15 %>
+            <%= render 'shared/card', object: @i = i %>
+            <% i = i + 1 %>
+            <% end %>
+          </div>
+        </div>
+      <!-- close the off-canvas menu -->
+      <a class="exit-off-canvas"></a>
+
+      </div>
     </div>
   </div>
 
@@ -91,14 +96,30 @@
 
         eventie.bind( container, 'click', function( event ) {
             // don't proceed if item was not clicked on
-            if ( !classie.has( event.target, 'item' ) ) {
-                return;
-            }
-            // change size of item via class
-            classie.toggle( event.target, 'gigante' );
+            node = searchCard( event );
+            if (node){
+              classie.toggle( node, 'gigante' );
+            } 
             // trigger layout
             msnry.layout();
+
         });
+
+        function searchCard(event){
+          node = event.target;
+          masonry = false;
+          while (!masonry){
+           if (node.className.search('card') === 0){
+              return node;
+           } else if (node.className.search('masonry') === 0){
+              masonry = true;
+           }
+           node = node.parentNode;
+         }
+         if (masonry === true){
+          return null;
+         }
+        }
 
     });
 </script>
