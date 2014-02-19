@@ -4,3 +4,6 @@
 # Google API Credentials
 GOOGLE_CLIENT_ID: 775380574040-lf6i6gn8a0rka8vu2kq6fo5b9gga5nba.apps.googleusercontent.com
 GOOGLE_CLIENT_SECRET: MkAeCmEwrh3C6AWso-0Z25rP
+
+# Email Account Password
+PASSWORD: 'catufa87'

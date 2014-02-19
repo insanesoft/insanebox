@@ -62,7 +62,7 @@ class User
   def connect(gmail_account)
     imap = Net::IMAP.new('imap.gmail.com', 993, usessl=true, certs=nil, verify=false)
     #imap.authenticate('XOAUTH2', gmail_account, self.token)
-    imap.login(gmail_account, 'catufa87')
+    imap.login(gmail_account, ENV['PASSWORD'])
 
     imap
   end
