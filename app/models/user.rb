@@ -73,6 +73,19 @@ class User
     mails
   end
 
+  def fetch_root_folders
+    imap = connect(self.email)
+
+    folders_struct = imap.list("","*")
+
+    @folder = Array.new
+
+    folders_struct.each do |folder|
+      puts "#{folder.name unless folder.name.include?(folder.delim)}"
+      @folder << folder.name unless folder.name.include?(folder.delim)
+    end
+  end
+
   def connect(gmail_account)
     imap = Net::IMAP.new('imap.gmail.com', 993, usessl=true, certs=nil, verify=false)
     #imap.authenticate('XOAUTH2', gmail_account, self.token)
