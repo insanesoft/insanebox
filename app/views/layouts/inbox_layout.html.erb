@@ -13,8 +13,21 @@
 
 <body>
     <%= javascript_include_tag "application" %>
-    <%= render :partial => '/shared/topbar' %>
-    <%= yield %>
+    <div class="off-canvas-wrap">
+      <div class="inner-wrap">  
+        <!-- Off Canvas Menu -->
+        <aside class="left-off-canvas-menu">
+            <!-- whatever you want goes here -->
+            <ul class="inline-list">
+              <% @folders.each do |folder| %>
+                <li><%= link_to folder.name, {action: 'getFolder', id: folder}, remote: true %></li>
+              <% end %>
+            </ul>
+        </aside>
+        <%= render :partial => '/shared/topbar' %>
+        <%= yield %>
+      </div>
+    </div>
     <% if flash[:notice] %>
         <script>alert('<%=flash[:notice]%>')</script>
     <% end %>

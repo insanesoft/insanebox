@@ -3,10 +3,14 @@ class InboxController < ApplicationController
   before_filter :authenticate_user!
 
   def show
-    from = "1-feb-2014"
-    to = "19-feb-2014"
-    @mails = current_user.fetch_mails_by_date(from, to)
-    current_user.fetch_root_folders
+    since = Time.now
+    @mails = current_user.fetch_mails_by_date("19-feb-2014")
+    @folders = current_user.fetch_root_folders
+    debugger
+  end
+
+  def getFolder
+
   end
 
 end

@@ -5,6 +5,7 @@ Insanebox::Application.routes.draw do
   post "sessions/create"
   get "home/index"
   get "sessions/destroy"
+  get "inbox/getFolder"
   root :to => "home#index"
 
   # Omniauth routes

@@ -57,7 +57,7 @@ class User
     end
   end
 
-  def fetch_mails_by_date(from, to)
+  def fetch_mails_by_date(since)
     imap = connect(self.email)
     #messages_count = imap.status('INBOX', ['MESSAGES'])['MESSAGES']
 
@@ -65,9 +65,9 @@ class User
 
     mails = Array.new
 
-    imap.search(["BEFORE", from, "SINCE", to]).each do |message_id|
+    imap.search(["SINCE", since]).each do |message_id|
       envelope = imap.fetch(message_id, "ENVELOPE")[0].attr["ENVELOPE"]
-      mails << [envelope.sender.first.name, envelope.date, envelope.subject]
+      mails << [envelope.from.first.name, envelope.date, envelope.subject]
     end
 
     mails

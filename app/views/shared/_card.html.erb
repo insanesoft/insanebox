@@ -1,11 +1,13 @@
 <div class="card">
   <div class="row" style="margin-bottom: 17px">
-    <div style="float:left">
-      <strong>Remitente</strong>
+    <div style="float:left; color: #6b6a6a;border-bottom: 1px solid #cccccc">
+      <strong><%= @mail[0] %></strong>
     </div>
-    <div style="float:right">Hora / Dia</div>
   </div>
-  <div class="row" style="margin-bottom: 17px"><strong>Titulo</strong></div>
+  <div class="row" style="border-bottom: 1px solid #cccccc">
+    <div style="float:right; color: #6b6a6a"><%= @mail[1] %></div>
+  </div>
+  <div class="row" style="margin-bottom: 17px; border-bottom: 1px solid #cccccc; color: #6b6a6a"><strong><%= @mail[2].encode(Encoding::UTF_8) %></strong></div>
   <div class="row" style="color: #6b6a6a; margin-bottom: 17px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias animi architecto aspernatur, cum ea eaque explicabo fugit ipsa ipsum itaque labore mollitia, natus necessitatibus nisi optio quia saepe tempora voluptatum.
   </div>
 </div>
