@@ -7,6 +7,5 @@ class InboxController < ApplicationController
     since = Time.now
     @mails = fetch_mails_by_folder("INBOX")
     @folders = fetch_root_folders
-    debugger
   end
 end
