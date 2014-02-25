@@ -56,42 +56,4 @@ class User
       end
     end
   end
-
-  def fetch_mails_by_date(since)
-    imap = connect(self.email)
-    #messages_count = imap.status('INBOX', ['MESSAGES'])['MESSAGES']
-
-    imap.examine('INBOX')
-
-    mails = Array.new
-
-    imap.search(["SINCE", since]).each do |message_id|
-      envelope = imap.fetch(message_id, "ENVELOPE")[0].attr["ENVELOPE"]
-      mails << [envelope.from.first.name, envelope.date, envelope.subject]
-    end
-
-    mails
-  end
-
-  def fetch_root_folders
-    imap = connect(self.email)
-
-    folders_struct = imap.list("","*")
-
-    @folder = Array.new
-
-    folders_struct.each do |folder|
-      puts "#{folder.name unless folder.name.include?(folder.delim)}"
-      @folder << folder.name unless folder.name.include?(folder.delim)
-    end
-  end
-
-  def connect(gmail_account)
-    imap = Net::IMAP.new('imap.gmail.com', 993, usessl=true, certs=nil, verify=false)
-    #imap.authenticate('XOAUTH2', gmail_account, self.token)
-    imap.login(gmail_account, ENV['PASSWORD'])
-
-    imap
-  end
-
 end
